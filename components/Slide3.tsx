@@ -1,32 +1,32 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
 const Slide3: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center text-center relative w-full px-4">
+    <div className="flex flex-col items-center justify-center h-full text-center relative">
       <motion.div
-        className="absolute inset-0 z-0 flex items-center justify-center opacity-20 pointer-events-none"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.3, 0.1] }}
-        transition={{ duration: 8, repeat: Infinity }}
+        className="absolute inset-0 z-0 flex items-center justify-center opacity-10"
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1.2 }}
+        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror" }}
       >
-        <div className="w-[400px] h-[400px] bg-pink-500 rounded-full blur-[100px]" />
+        <div className="w-[500px] h-[500px] bg-pink-500 rounded-full blur-[120px]" />
       </motion.div>
 
-      <div className="z-10 space-y-10 max-w-xl">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          className="text-8xl"
-        >
-          🫠
-        </motion.div>
-
-        <div className="relative py-6">
+      <div className="z-10 space-y-12">
+        <div className="relative">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ height: 0 }}
+            animate={{ height: "100%" }}
+            transition={{ duration: 3, ease: "linear" }}
+            className="absolute left-1/2 -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-pink-400/0 via-pink-400 to-transparent rounded-full"
+          />
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1.5 }}
-            className="text-5xl md:text-7xl font-cursive text-pink-200 text-glow"
+            className="text-6xl md:text-7xl font-cursive text-pink-200"
           >
             My heart melts...
           </motion.div>
@@ -35,20 +35,24 @@ const Slide3: React.FC = () => {
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="space-y-8"
+          transition={{ delay: 0.5 }}
+          className="space-y-4"
         >
-          <p className="text-2xl md:text-3xl text-pink-50 font-light leading-relaxed">
-            Every time you smile, <br /> 
-            it's like <span className="text-pink-400 font-cursive text-4xl">pure chocolate</span> <br /> 
-            warming my soul 🤎
+          <p className="text-xl md:text-2xl text-pink-100 font-light max-w-lg">
+            “When I think of you, it just happens... <br /> 
+            just like <span className="text-pink-400 font-semibold italic">chocolate in warm hands</span> 🤎🥹”
           </p>
-          
-          <div className="h-px w-32 bg-gradient-to-r from-transparent via-pink-400/40 to-transparent mx-auto" />
-          
-          <p className="text-lg text-pink-300 font-serif italic tracking-wide">
-            Smriti, you are the warmth I always crave.
+          <p className="text-lg text-pink-300 font-serif italic">
+            Thank you for being my comfort, my smile, my everything 💞
           </p>
+        </motion.div>
+
+        <motion.div 
+          className="text-5xl"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          🫠✨
         </motion.div>
       </div>
     </div>
