@@ -75,162 +75,156 @@ const BackgroundElements: React.FC = () => {
 };
 
 // --- Slide 1 Component ---
-const Slide1: React.FC = () => {
-  return (
-    <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative"
+const Slide1: React.FC = () => (
+  <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="relative"
+    >
+      <div className="text-8xl mb-4 filter drop-shadow-lg">🍫</div>
+      <motion.div 
+        className="absolute inset-0 bg-pink-400/20 blur-2xl rounded-full"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      />
+    </motion.div>
+
+    <div className="space-y-4">
+      <motion.h1 
+        className="text-4xl md:text-6xl font-serif font-bold text-pink-100"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5 }}
       >
-        <div className="text-8xl mb-4 filter drop-shadow-lg">🍫</div>
-        <motion.div 
-          className="absolute inset-0 bg-pink-400/20 blur-2xl rounded-full"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-      </motion.div>
+        Happy Chocolate Day, <br />
+        <span className="font-cursive text-pink-400 inline-block heartbeat mt-2">Smriti 💖</span>
+      </motion.h1>
 
-      <div className="space-y-4">
-        <motion.h1 
-          className="text-4xl md:text-6xl font-serif font-bold text-pink-100"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          Happy Chocolate Day, <br />
-          <span className="font-cursive text-pink-400 inline-block heartbeat mt-2">Smriti 💖</span>
-        </motion.h1>
-
-        <motion.p 
-          className="text-lg md:text-xl text-pink-100/80 max-w-md mx-auto leading-relaxed"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          “Just like chocolate, you make my life <br /> 
-          <span className="italic font-semibold text-pink-300">sweeter every single day 🥰✨</span>”
-        </motion.p>
-      </div>
-
-      <motion.div
-        className="mt-8 flex gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+      <motion.p 
+        className="text-lg md:text-xl text-pink-100/80 max-w-md mx-auto leading-relaxed"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.8 }}
       >
-        <span className="w-2 h-2 rounded-full bg-pink-400" />
-        <span className="w-2 h-2 rounded-full bg-pink-300" />
-        <span className="w-2 h-2 rounded-full bg-pink-200" />
-      </motion.div>
+        “Just like chocolate, you make my life <br /> 
+        <span className="italic font-semibold text-pink-300">sweeter every single day 🥰✨</span>”
+      </motion.p>
     </div>
-  );
-};
+
+    <motion.div
+      className="mt-8 flex gap-2"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5 }}
+    >
+      <span className="w-2 h-2 rounded-full bg-pink-400" />
+      <span className="w-2 h-2 rounded-full bg-pink-300" />
+      <span className="w-2 h-2 rounded-full bg-pink-200" />
+    </motion.div>
+  </div>
+);
 
 // --- Slide 2 Component ---
-const Slide2: React.FC = () => {
-  return (
-    <div className="flex flex-col items-center justify-center h-full text-center p-6 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl overflow-hidden w-full max-w-lg mx-auto">
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        {['🍫', '🍩', '🍪', '🍨'].map((emoji, i) => (
-          <motion.div
-            key={i}
-            initial={{ scale: 0, rotate: -45 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.2 * i, type: 'spring' }}
-            className="text-5xl bg-brown-900/20 p-4 rounded-2xl"
-          >
-            {emoji}
-          </motion.div>
-        ))}
+const Slide2: React.FC = () => (
+  <div className="flex flex-col items-center justify-center h-full text-center p-6 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+    <div className="grid grid-cols-2 gap-4 mb-8">
+      {['🍫', '🍩', '🍪', '🍨'].map((emoji, i) => (
+        <motion.div
+          key={i}
+          initial={{ scale: 0, rotate: -45 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ delay: 0.2 * i, type: 'spring' }}
+          className="text-5xl bg-brown-900/20 p-4 rounded-2xl"
+        >
+          {emoji}
+        </motion.div>
+      ))}
+    </div>
+
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      className="space-y-6"
+    >
+      <h2 className="text-3xl font-serif text-pink-100">
+        There are many chocolates in this world...
+      </h2>
+      <div className="h-px w-24 bg-pink-300/30 mx-auto" />
+      <p className="text-2xl font-cursive text-pink-400">
+        “But you, <span className="font-bold underline decoration-pink-300/50">Smriti</span>, are my favorite flavor forever 😘🍩”
+      </p>
+      <p className="text-lg text-pink-100/70 tracking-widest uppercase">
+        Sweet • Soft • Irresistible 💕
+      </p>
+    </motion.div>
+
+    <motion.div 
+      className="mt-10"
+      animate={{ y: [0, -10, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <div className="text-4xl">🍫😍</div>
+    </motion.div>
+  </div>
+);
+
+// --- Slide 3 Component ---
+const Slide3: React.FC = () => (
+  <div className="flex flex-col items-center justify-center h-full text-center relative">
+    <motion.div
+      className="absolute inset-0 z-0 flex items-center justify-center opacity-10"
+      initial={{ scale: 0.8 }}
+      animate={{ scale: 1.2 }}
+      transition={{ duration: 10, repeat: Infinity, repeatType: "mirror" }}
+    >
+      <div className="w-[500px] h-[500px] bg-pink-500 rounded-full blur-[120px]" />
+    </motion.div>
+
+    <div className="z-10 space-y-12">
+      <div className="relative">
+        <motion.div
+          initial={{ height: 0 }}
+          animate={{ height: "100%" }}
+          transition={{ duration: 3, ease: "linear" }}
+          className="absolute left-1/2 -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-pink-400/0 via-pink-400 to-transparent rounded-full"
+        />
+        <motion.div
+          initial={{ opacity: 0, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.5 }}
+          className="text-6xl md:text-7xl font-cursive text-pink-200"
+        >
+          My heart melts...
+        </motion.div>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        className="space-y-6"
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="space-y-4"
       >
-        <h2 className="text-3xl font-serif text-pink-100">
-          There are many chocolates in this world...
-        </h2>
-        <div className="h-px w-24 bg-pink-300/30 mx-auto" />
-        <p className="text-2xl font-cursive text-pink-400">
-          “But you, <span className="font-bold underline decoration-pink-300/50">Smriti</span>, are my favorite flavor forever 😘🍩”
+        <p className="text-xl md:text-2xl text-pink-100 font-light max-w-lg">
+          “When I think of you, it just happens... <br /> 
+          just like <span className="text-pink-400 font-semibold italic">chocolate in warm hands</span> 🤎🥹”
         </p>
-        <p className="text-lg text-pink-100/70 tracking-widest uppercase">
-          Sweet • Soft • Irresistible 💕
+        <p className="text-lg text-pink-300 font-serif italic">
+          Thank you for being my comfort, my smile, my everything 💞
         </p>
       </motion.div>
 
       <motion.div 
-        className="mt-10"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className="text-5xl"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="text-4xl">🍫😍</div>
+        🫠✨
       </motion.div>
     </div>
-  );
-};
-
-// --- Slide 3 Component ---
-const Slide3: React.FC = () => {
-  return (
-    <div className="flex flex-col items-center justify-center h-full text-center relative">
-      <motion.div
-        className="absolute inset-0 z-0 flex items-center justify-center opacity-10"
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1.2 }}
-        transition={{ duration: 10, repeat: Infinity, repeatType: "mirror" }}
-      >
-        <div className="w-[500px] h-[500px] bg-pink-500 rounded-full blur-[120px]" />
-      </motion.div>
-
-      <div className="z-10 space-y-12">
-        <div className="relative">
-          <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: "100%" }}
-            transition={{ duration: 3, ease: "linear" }}
-            className="absolute left-1/2 -translate-x-1/2 top-0 w-1 bg-gradient-to-b from-pink-400/0 via-pink-400 to-transparent rounded-full"
-          />
-          <motion.div
-            initial={{ opacity: 0, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.5 }}
-            className="text-6xl md:text-7xl font-cursive text-pink-200"
-          >
-            My heart melts...
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="space-y-4"
-        >
-          <p className="text-xl md:text-2xl text-pink-100 font-light max-w-lg">
-            “When I think of you, it just happens... <br /> 
-            just like <span className="text-pink-400 font-semibold italic">chocolate in warm hands</span> 🤎🥹”
-          </p>
-          <p className="text-lg text-pink-300 font-serif italic">
-            Thank you for being my comfort, my smile, my everything 💞
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="text-5xl"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          🫠✨
-        </motion.div>
-      </div>
-    </div>
-  );
-};
+  </div>
+);
 
 // --- Slide 4 Component ---
 const Slide4: React.FC = () => {
@@ -308,71 +302,69 @@ const Slide4: React.FC = () => {
 };
 
 // --- Slide 5 Component ---
-const Slide5: React.FC = () => {
-  return (
-    <div className="flex flex-col items-center justify-center h-full text-center space-y-12 bg-brown-900/40 p-10 rounded-[4rem] border border-white/5 backdrop-blur-md">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 100,
-          delay: 0.2
-        }}
-        className="text-7xl"
+const Slide5: React.FC = () => (
+  <div className="flex flex-col items-center justify-center h-full text-center space-y-12 bg-brown-900/40 p-10 rounded-[4rem] border border-white/5 backdrop-blur-md">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 100,
+        delay: 0.2
+      }}
+      className="text-7xl"
+    >
+      🍫❤️
+    </motion.div>
+
+    <div className="space-y-6">
+      <motion.h1 
+        className="text-4xl md:text-5xl font-serif font-bold text-pink-100"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5 }}
       >
-        🍫❤️
-      </motion.div>
+        Happy Chocolate Day, <br />
+        <span className="text-pink-400 italic">my love</span>
+      </motion.h1>
 
-      <div className="space-y-6">
-        <motion.h1 
-          className="text-4xl md:text-5xl font-serif font-bold text-pink-100"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          Happy Chocolate Day, <br />
-          <span className="text-pink-400 italic">my love</span>
-        </motion.h1>
-
-        <motion.div 
-          className="space-y-2 text-xl md:text-2xl text-pink-200/80 font-cursive"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          <p>“Stay sweet, stay mine, stay forever 💕🥹”</p>
-        </motion.div>
-      </div>
-
-      <motion.div
-        className="pt-8 border-t border-white/10 w-full"
+      <motion.div 
+        className="space-y-2 text-xl md:text-2xl text-pink-200/80 font-cursive"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1 }}
       >
-        <p className="text-lg font-serif italic text-pink-300">
-          With all my heart — <span className="text-white font-bold ml-1">Yours 💌</span>
-        </p>
-        <div className="mt-4 flex justify-center gap-4">
-          <span className="animate-bounce">🎉</span>
-          <span className="animate-bounce delay-100">💝</span>
-          <span className="animate-bounce delay-200">🎉</span>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="absolute -bottom-4 right-10 text-pink-400 opacity-20 rotate-12"
-        animate={{ rotate: [12, 15, 12] }}
-        transition={{ duration: 4, repeat: Infinity }}
-      >
-        <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-        </svg>
+        <p>“Stay sweet, stay mine, stay forever 💕🥹”</p>
       </motion.div>
     </div>
-  );
-};
+
+    <motion.div
+      className="pt-8 border-t border-white/10 w-full"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5 }}
+    >
+      <p className="text-lg font-serif italic text-pink-300">
+        With all my heart — <span className="text-white font-bold ml-1">Yours 💌</span>
+      </p>
+      <div className="mt-4 flex justify-center gap-4">
+        <span className="animate-bounce">🎉</span>
+        <span className="animate-bounce delay-100">💝</span>
+        <span className="animate-bounce delay-200">🎉</span>
+      </div>
+    </motion.div>
+
+    <motion.div
+      className="absolute -bottom-4 right-10 text-pink-400 opacity-20 rotate-12"
+      animate={{ rotate: [12, 15, 12] }}
+      transition={{ duration: 4, repeat: Infinity }}
+    >
+      <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
+    </motion.div>
+  </div>
+);
 
 // --- Main App Component ---
 const App: React.FC = () => {
