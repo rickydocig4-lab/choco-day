@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +10,9 @@
         body {
             margin: 0;
             overflow: hidden;
-            background: #2D1B14;
+            background: #1a0f0a;
             font-family: 'Montserrat', sans-serif;
+            color: #fff;
         }
         .font-cursive {
             font-family: 'Dancing Script', cursive;
@@ -20,21 +20,25 @@
         .font-serif {
             font-family: 'Playfair Display', serif;
         }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.1); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
-        .heartbeat {
-            animation: heartbeat 1.5s infinite ease-in-out;
+        .animate-soft-float {
+            animation: floating 6s ease-in-out infinite;
         }
         .bg-chocolate-gradient {
-            background: linear-gradient(135deg, #4E342E 0%, #3E2723 100%);
+            background: radial-gradient(circle at center, #3d1f14 0%, #1a0f0a 100%);
         }
-        .bg-soft-pink {
-            background-color: #F8BBD0;
+        .text-glow {
+            text-shadow: 0 0 15px rgba(244, 143, 177, 0.4);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
         ::-webkit-scrollbar {
             display: none;

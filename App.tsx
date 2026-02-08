@@ -1,16 +1,15 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Music, Volume2, VolumeX, ChevronRight, ChevronLeft, Sparkles } from 'lucide-react';
+import { Heart, Music, Volume2, VolumeX, ChevronRight, ChevronLeft } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-// Components for the slides
-import Slide1 from './components/Slide1';
-import Slide2 from './components/Slide2';
-import Slide3 from './components/Slide3';
-import Slide4 from './components/Slide4';
-import Slide5 from './components/Slide5';
-import BackgroundElements from './components/BackgroundElements';
+// Importing components with relative paths
+import Slide1 from './components/Slide1.tsx';
+import Slide2 from './components/Slide2.tsx';
+import Slide3 from './components/Slide3.tsx';
+import Slide4 from './components/Slide4.tsx';
+import Slide5 from './components/Slide5.tsx';
+import BackgroundElements from './components/BackgroundElements.tsx';
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,20 +48,16 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // Auto trigger confetti on last slide
     if (currentSlide === 4) {
       const duration = 5 * 1000;
       const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
 
       const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
       const interval: any = setInterval(function() {
         const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
+        if (timeLeft <= 0) return clearInterval(interval);
 
         const particleCount = 50 * (timeLeft / duration);
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
@@ -74,79 +69,83 @@ const App: React.FC = () => {
   }, [currentSlide]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-chocolate-gradient flex flex-col items-center justify-center text-white">
+    <div className="relative w-full h-screen overflow-hidden bg-chocolate-gradient flex flex-col items-center justify-center">
       {/* Background Music */}
       <audio 
         ref={audioRef} 
         loop 
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" // Romantic placeholder
+        src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808f3030e.mp3" 
       />
       
       {/* Background Decor */}
       <BackgroundElements />
 
-      {/* Controls Overlay */}
-      <div className="absolute top-6 right-6 z-50 flex gap-4">
+      {/* Controls */}
+      <div className="absolute top-6 right-6 z-[60] flex gap-4">
         <button 
           onClick={toggleMusic}
-          className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all text-pink-200"
+          className="p-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all text-pink-300 shadow-xl"
+          aria-label="Toggle Music"
         >
           {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
         </button>
       </div>
 
       {/* Slides Container */}
-      <div className="relative w-full max-w-4xl h-[80vh] flex items-center justify-center z-10 px-4">
+      <main className="relative w-full max-w-4xl h-[85vh] flex items-center justify-center z-10 px-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, x: 50, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -50, scale: 1.05 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-full h-full"
+            initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            className="w-full h-full flex items-center justify-center"
           >
             {slides[currentSlide]}
           </motion.div>
         </AnimatePresence>
-      </div>
+      </main>
 
-      {/* Navigation Buttons */}
-      <div className="absolute bottom-10 flex items-center gap-8 z-50">
+      {/* Navigation */}
+      <nav className="absolute bottom-8 flex items-center gap-10 z-[60]">
         <button
           onClick={prevSlide}
-          disabled={currentSlide === 0}
-          className={`p-4 rounded-full transition-all ${currentSlide === 0 ? 'opacity-0 scale-0' : 'bg-white/10 hover:bg-white/20 border border-white/20 shadow-lg'}`}
+          className={`p-4 rounded-full transition-all duration-300 ${currentSlide === 0 ? 'opacity-0 scale-0 pointer-events-none' : 'bg-white/5 hover:bg-white/15 border border-white/10 shadow-lg text-pink-200'}`}
         >
-          <ChevronLeft className="text-pink-100" />
+          <ChevronLeft size={28} />
         </button>
 
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           {slides.map((_, idx) => (
-            <div 
+            <motion.div 
               key={idx} 
-              className={`h-2 rounded-full transition-all duration-500 ${currentSlide === idx ? 'w-8 bg-pink-400' : 'w-2 bg-pink-200/30'}`}
+              initial={false}
+              animate={{ 
+                width: currentSlide === idx ? 32 : 10,
+                backgroundColor: currentSlide === idx ? '#F48FB1' : 'rgba(244, 143, 177, 0.2)' 
+              }}
+              className="h-2 rounded-full transition-all duration-500"
             />
           ))}
         </div>
 
         <button
           onClick={nextSlide}
-          disabled={currentSlide === slides.length - 1}
-          className={`p-4 rounded-full transition-all ${currentSlide === slides.length - 1 ? 'opacity-0 scale-0' : 'bg-white/10 hover:bg-white/20 border border-white/20 shadow-lg'}`}
+          className={`p-4 rounded-full transition-all duration-300 ${currentSlide === slides.length - 1 ? 'opacity-0 scale-0 pointer-events-none' : 'bg-white/5 hover:bg-white/15 border border-white/10 shadow-lg text-pink-200'}`}
         >
-          <ChevronRight className="text-pink-100" />
+          <ChevronRight size={28} />
         </button>
-      </div>
+      </nav>
 
-      {/* Instructions on start */}
+      {/* Music Tip */}
       {!isPlaying && currentSlide === 0 && (
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute bottom-28 text-pink-200/60 text-sm flex items-center gap-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 0.6, y: 0 }}
+          className="absolute bottom-24 text-pink-200/80 text-xs flex items-center gap-2 tracking-widest uppercase font-light"
         >
-          <Music size={14} /> Tap the music icon for the best experience
+          <Music size={12} /> Sound on for Smriti 💖
         </motion.div>
       )}
     </div>
